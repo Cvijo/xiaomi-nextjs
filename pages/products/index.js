@@ -1,9 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import ProductListItem from "../../components/products/ProductListItem";
-import Layout from '../../components/Layout';
-import fetch from 'isomorphic-unfetch';
-import { PropTypes } from 'prop-types';
-
+import Layout from "../../components/Layout";
+import fetch from "isomorphic-unfetch";
+import { PropTypes } from "prop-types";
 
 const allProductsUrl =
   "https://offers.xiaomipedia.com/api/v1/products?api_key=ali7w4fhopq34ifn93784fg";
@@ -16,10 +15,29 @@ const ProductList = ({ products }) => (
   </ul>
 );
 
-const Index = ({products}) => {
+const Index = ({ products }) => {
+  const allProducts = products;
+  const [filteredProduct, setFilteredProducts] = useState(allProducts);
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const onSearchChange = event => {
+    const value = event.target.value;
+    setSearchTerm(value);
+    if (value) {
+      const tmpProducts = allProducts.filter(product =>
+        product.name.toLowerCase().includes(value.toLowerCase())
+      );
+
+      setFilteredProducts(tmpProducts);
+    } else {
+      setFilteredProducts(allProducts);
+    }
+  };
+
   return (
     <Layout>
-      {products && <ProductList products={products} />}
+      <input onChange={onSearchChange} value={searchTerm} />
+      {products && <ProductList products={filteredProduct} />}
     </Layout>
   );
 };
@@ -34,7 +52,7 @@ Index.getInitialProps = async () => {
 };
 
 Index.propTypes = {
-  products: PropTypes.arrayOf(PropTypes.object).isRequired,
-}
+  products: PropTypes.arrayOf(PropTypes.object).isRequired
+};
 
 export default Index;
