@@ -2,6 +2,8 @@ import { useRouter } from "next/router";
 import Layout from '../../components/Layout';
 import { PropTypes } from 'prop-types';
 import ProductItem from './../../components/products/ProductItem';
+import fetch from 'isomorphic-unfetch';
+
 
 const allProductLinksUrl =
   "https://offers.xiaomipedia.com/api/v1/links?api_key=ali7w4fhopq34ifn93784fg";
