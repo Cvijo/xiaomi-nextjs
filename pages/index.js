@@ -1,6 +1,8 @@
 import React from "react";
 import Layout from "../components/Layout";
 
+
+//test
 const Home = () => (
   <Layout>
     <div className='hero'>
