@@ -1,13 +1,27 @@
 import React from "react";
 import Layout from "../components/Layout";
+import Button from '@material-ui/core/Button';
 
-const Home = () => (
+
+
+//test
+const Home: React.FunctionComponent = () => (
   <Layout>
     <div className='hero'>
       <h1 className='title'>Xiaomi</h1>
       {/* <p className='description'>
         Some description ...
+        
       </p> */}
+    <Button  variant="contained" color="primary">
+      Some new button
+    </Button>
+    <Button  variant="outlined" color="primary">
+      Some new button
+    </Button>
+    <Button  variant="text" color="primary">
+      Some new button
+    </Button>
     </div>
 
     <style jsx>{`
